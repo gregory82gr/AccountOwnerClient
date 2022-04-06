@@ -1,18 +1,40 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router'
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { MenuComponent } from './menu/menu.component';
+import { NotFoundComponent } from './error-pages/not-found/not-found.component';
+import { HttpClientModule } from '@angular/common/http';
+import { OwnerListComponent } from './owner/owner-list/owner-list.component';
+import { OwnerCreateComponent } from './owner/owner-create/owner-create.component';
+import { InternalServerComponent } from './error-pages/internal-server/internal-server.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    MenuComponent,
+    NotFoundComponent,
+    InternalServerComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
+    RouterModule.forRoot([
+      { path: 'home', component: HomeComponent },
+      { path: 'owner', loadChildren: () => import('./owner/owner.module').then(m => m.OwnerModule) },
+      { path: '404', component: NotFoundComponent},
+      { path: '500', component: InternalServerComponent },
+      { path: '', redirectTo: '/home', pathMatch: 'full' },
+      { path: '**', redirectTo: '/404', pathMatch: 'full'}
+    ])
   ],
-  providers: [],
+  providers: [
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
