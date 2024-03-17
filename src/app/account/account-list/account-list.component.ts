@@ -4,8 +4,9 @@ import { AccountRepositoryService } from '../../shared/services/account-reposito
 import { ErrorHandlerService } from '../../shared/services/error-handler.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { map } from 'rxjs/operators';
+import { distinct, map } from 'rxjs/operators';
 import { filter } from 'rxjs/operators';
+import { from, of } from 'rxjs';
 
 
 @Component({
@@ -51,32 +52,33 @@ export class AccountListComponent  {
     this.router.navigate([updateUrl]);
   }
 
-  public getUniqueAccounts(accounts: Account[]):Account[] {
+  public getUniqueAccounts(accounts: Account[]):any[] {
       let resultArray=[];
       let tempArray=[];
       let isFound=false;
       // resultArray= accounts
       //            .map(item => item.owner)
       //            .filter((value, index, self) => self.indexOf(value) === index)
-      for(const item of accounts ){
+      // for(const item of accounts ){
 
-        console.log(item['owner']);
+      //   console.log(item['owner']);
 
-        for(const item1 of resultArray ){
-            if(item['owner']==item1['owner']){
-              isFound=true;
-            }else{
-              isFound=false;
-            }
-            console.log(isFound);
-        }
+      //   for(const item1 of resultArray ){
+      //       if(item['owner']==item1['owner']){
+      //         isFound=true;
+      //       }else{
+      //         isFound=false;
+      //       }
+      //       console.log(isFound);
+      //   }
 
-        if(isFound==false){
-          resultArray.push(item);
+      //   if(isFound==false){
+      //     resultArray.push(item);
 
-        }
-      }
-
+      //   }
+      // }
+     from(accounts).pipe(distinct(e=>e.owner))
+     .subscribe(x => resultArray.push(x));
      return resultArray;
 
   }
