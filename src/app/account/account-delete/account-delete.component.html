@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 card card-body bg-light mb-2 mt-2">
+      <div class="row">
+
+        <div class="row">
+          <div class="col-md-3">
+            <label for="id" class="control-label">Account Id:</label>
+          </div>
+          <div class="col-md-7">
+            <span name="id">
+              {{account.id}}
+            </span>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <label for="accountType" class="control-label">Account type:</label>
+        </div>
+        <div class="col-md-7">
+          <span name="accountType">
+            {{account.accountType}}
+          </span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <label for="dateCreated" class="control-label">Date Created:</label>
+        </div>
+        <div class="col-md-7">
+          <span name="accountType">
+            {{account.dateCreated | date: 'MM/dd/yyyy'}}
+          </span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <label for="ownerId" class="control-label">Owner Id:</label>
+        </div>
+        <div class="col-md-7">
+          <span name="ownerId">
+            {{account.ownerId}}
+          </span>
+        </div>
+      </div>
+
+      <br>
+        <div class="row">
+          <div class="offset-md-3 col-md-1">
+            <button type="submit" class="btn btn-info" (click)="deleteAccount()">Delete</button>
+          </div>
+          <div class="col-md-1">
+            <button type="button" class="btn btn-danger" (click)="redirectToAccountList()">Cancel</button>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+

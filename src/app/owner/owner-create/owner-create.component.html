@@ -19,7 +19,7 @@
         <label for="dateOfBirth" class="col-form-label col-md-2">Date of birth: </label>
         <div class="col-md-5">
           <input type="text" formControlName="dateOfBirth" id="dateOfBirth"
-          class="form-control" readonly bsDatepicker/>
+          class="form-control" readonly bsDatepicker [bsConfig]="datePickerConfig"/>
         </div>
         <div class="col-md-5">
           <em *ngIf="validateControl('dateOfBirth')

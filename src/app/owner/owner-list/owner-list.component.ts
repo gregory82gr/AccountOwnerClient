@@ -46,6 +46,7 @@ export class OwnerListComponent implements OnInit{
 
   public redirectToDeletePage = (id) => {
     const deleteUrl: string = `/owner/delete/${id}`;
+    console.log(deleteUrl);
     this.router.navigate([deleteUrl]);
   }
 

@@ -1,0 +1,61 @@
+
+<br>
+<div class="row">
+  <br>
+  <div class="form-group">
+    <strong>Account Type</strong>
+    <select class="form-control"
+            [(ngModel)]="accountType">
+      <option></option>
+      <option value="Savings">Savings</option>
+      <option value="Domestic">Domestic</option>
+      <option value="Foreign">Foreign</option>
+    </select>
+  </div>
+  <br>
+  <div class="form-group">
+    <strong>Owner</strong>
+    <select class="form-control"
+            [(ngModel)]="owner">
+      <option></option>
+      <option *ngFor="let item of accounts"  [value]="item.owner">
+        {{item.owner}}
+      </option>
+    </select>
+  </div>
+  <div class="offset-10 col-md-2 mt-2">
+    <a [routerLink]="['/account/create']"
+       >Create account</a>
+  </div>
+
+</div>
+<br>
+<div class="row">
+  <div class="col-md-12">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Account Id</th>
+            <th>Date created</th>
+            <th>Account type</th>
+            <th>Owner Id</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let account of accounts| tableFilterOwner : owner
+          | tableFilterAccountType : accountType">
+            <td>{{account.id}}</td>
+            <td>{{account.dateCreated| date: 'dd/MM/yyyy'}}</td>
+            <td>{{account.accountType}}</td>
+            <td>{{account.owner}}</td>
+            <td><button type="button" id="update" class="btn btn-success" (click)="redirectToUpdatePage(account.id)">Update</button></td>
+            <td><button type="button" id="delete" class="btn btn-danger" (click)="redirectToDeletePage(account.id)">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

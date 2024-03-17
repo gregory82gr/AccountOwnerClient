@@ -11,6 +11,7 @@ import { NotFoundComponent } from './error-pages/not-found/not-found.component';
 import { InternalServerComponent } from './error-pages/internal-server/internal-server.component';
 import { DatePipe } from '@angular/common';
 import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
+import { AccountModule } from './account/account.module';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AccountModule
   ],
   providers: [DatePipe,BsModalService],
   bootstrap: [AppComponent]

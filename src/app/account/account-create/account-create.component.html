@@ -1,0 +1,67 @@
+<div class="container-fluid">
+  <form [formGroup]="accountForm" autocomplete="off" novalidate (ngSubmit)="createAccount(accountForm.value)">
+    <div class="card card-body bg-light mb-2 mt-2">
+
+
+      <div class="mb-3 row">
+        <label for="dateCreated" class="col-form-label col-md-2">Date created: </label>
+        <div class="col-md-5">
+          <input type="text" formControlName="dateCreated" id="dateCreated"
+          class="form-control" readonly bsDatepicker />
+        </div>
+        <div class="col-md-5">
+          <em *ngIf="validateControl('dateCreated')
+          && hasError('dateCreated', 'required')">Date created is required</em>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="ownerId" class="col-form-label col-md-2">Owner Guid: </label>
+        <div class="col-md-5">
+          <input type="text" formControlName="ownerId" id="ownerId" class="form-control" [readOnly]="this.IsReadonly" />
+        </div>
+        <div class="col-md-5">
+          <em *ngIf="validateControl('ownerId')
+          && hasError('ownerId', 'required')">Owner id is required</em>
+
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label for="accountType" class="col-form-label col-md-2">Account Type: </label>
+        <div class="col-md-5">
+          <!-- <input type="text"
+          formControlName="accountType"
+          id="accountType"
+          class="form-control"
+          /> -->
+
+          <select class="form-select" formControlName="accountType" id="accountType"
+          class="form-control">
+            <option selected value="0">Select an account type</option>
+            <option value="Savings">Savings</option>
+            <option value="Domestic">Domestic</option>
+            <option value="Foreign">Foreign</option>
+          </select>
+
+        </div>
+        <div class="col-md-5">
+          <em *ngIf="validateControl('accountType')">Account type is required</em>
+        </div>
+      </div>
+
+      <br><br>
+
+      <div class="mb-3 row">
+          <div class="offset-5 col-md-1">
+              <button type="submit" class="btn btn-info" [disabled]="!accountForm.valid">Save</button>
+          </div>
+          <div class="col-md-1">
+              <button type="button" class="btn btn-danger" (click)="redirectToAccountList()">Cancel</button>
+          </div>
+      </div>
+
+    </div>
+  </form>
+</div>
+

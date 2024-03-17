@@ -16,7 +16,8 @@
               [routerLinkActiveOptions]="{exact: true}"> Owner Actions </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Account Actions </a>
+              <a class="nav-link" [routerLink]="['/account/list']" routerLinkActive="active"
+              [routerLinkActiveOptions]="{exact: true}"> Account Actions </a>
             </li>
           </ul>
         </div>

@@ -9,6 +9,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ModalOptions, BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Owner } from '../../_interfaces/owner.model';
 import { OwnerForCreation } from '../../_interfaces/owner-for-creation.model';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+
 
 @Component({
   selector: 'app-owner-create',
@@ -19,9 +21,14 @@ export class OwnerCreateComponent implements OnInit {
   errorMessage: string = '';
   ownerForm: FormGroup;
   bsModalRef?: BsModalRef;
+  // create a property of type Partial<BsDatepickerConfig>
+  datePickerConfig: Partial<BsDatepickerConfig>;
+
 
   constructor(private repository: OwnerRepositoryService, private errorHandler: ErrorHandlerService,
-    private router: Router, private datePipe: DatePipe, private modal: BsModalService) { }
+    private router: Router, private datePipe: DatePipe, private modal: BsModalService) {
+      this.datePickerConfig = Object.assign({}, { containerClass: 'theme-dark-blue' });
+     }
 
   ngOnInit(): void {
     this.ownerForm = new FormGroup({

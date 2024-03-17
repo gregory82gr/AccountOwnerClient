@@ -12,6 +12,7 @@
           <tr *ngFor="let account of accounts" (click)="onAccountClicked(account)">
             <td>{{account?.accountType}}</td>
             <td>{{account?.dateCreated | date: 'dd/MM/yyyy'}}</td>
+            <td><button type="button" id="delete" class="btn btn-danger"   (click)="redirectToDeletePage(account.id)">Delete</button></td>
           </tr>
         </tbody>
       </table>

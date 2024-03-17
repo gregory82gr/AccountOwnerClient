@@ -1,5 +1,9 @@
 <div class="card card-body bg-light mb-2 mt-2">
   <div class="row">
+    <div class="offset-10 col-md-2 mt-2"> <a [routerLink]="['/account/create',{ownerId: owner.id}]"
+      >Add Account</a> </div>
+  </div>
+  <div class="row">
     <div class="col-md-3">
       <strong>Owner name:</strong>
     </div>
@@ -31,8 +35,10 @@
       <div class="col-md-3">
         <span [appAppend]="owner" class="text-info">Advanced user.</span>
       </div>
+
     </div>
   </ng-template>
+
 </div>
 
 <<app-owner-accounts [accounts]="owner?.accounts" (onAccountClick)="printToConsole($event)"></app-owner-accounts>

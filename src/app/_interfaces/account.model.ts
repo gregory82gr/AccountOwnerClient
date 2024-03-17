@@ -3,4 +3,5 @@ export interface Account{
   dateCreated: Date;
   accountType: string;
   ownerId?: string;
+  owner?:string;
 }
