@@ -18,7 +18,7 @@
     <select class="form-control"
             [(ngModel)]="owner">
       <option></option>
-      <option *ngFor="let item of accounts"  [value]="item.owner">
+      <option *ngFor="let item of getUniqueAccounts(accounts)"  [value]="item.owner">
         {{item.owner}}
       </option>
     </select>

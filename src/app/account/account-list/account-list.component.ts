@@ -4,6 +4,8 @@ import { AccountRepositoryService } from '../../shared/services/account-reposito
 import { ErrorHandlerService } from '../../shared/services/error-handler.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
+import { filter } from 'rxjs/operators';
 
 
 @Component({
@@ -47,5 +49,35 @@ export class AccountListComponent  {
     const updateUrl: string = `/account/update/${id}`;
     console.log(updateUrl);
     this.router.navigate([updateUrl]);
+  }
+
+  public getUniqueAccounts(accounts: Account[]):Account[] {
+      let resultArray=[];
+      let tempArray=[];
+      let isFound=false;
+      // resultArray= accounts
+      //            .map(item => item.owner)
+      //            .filter((value, index, self) => self.indexOf(value) === index)
+      for(const item of accounts ){
+
+        console.log(item['owner']);
+
+        for(const item1 of resultArray ){
+            if(item['owner']==item1['owner']){
+              isFound=true;
+            }else{
+              isFound=false;
+            }
+            console.log(isFound);
+        }
+
+        if(isFound==false){
+          resultArray.push(item);
+
+        }
+      }
+
+     return resultArray;
+
   }
 }

@@ -11,6 +11,7 @@ import { AccountUpdateComponent } from './account-update/account-update.componen
 import { FormsModule } from '@angular/forms';
 import { TableFilterOwnerPipe } from '../Utils/table-filter-owner.pipe';
 import { TableFilterAccountTypePipe } from '../Utils/table-filter-accounttype.pipe';
+import { UniquePipe } from '../Utils/unique.pipe';
 
 
 
@@ -21,7 +22,8 @@ import { TableFilterAccountTypePipe } from '../Utils/table-filter-accounttype.pi
     AccountDeleteComponent,
     AccountUpdateComponent,
     TableFilterOwnerPipe,
-    TableFilterAccountTypePipe
+    TableFilterAccountTypePipe,
+    UniquePipe
   ],
   imports: [
     CommonModule,
