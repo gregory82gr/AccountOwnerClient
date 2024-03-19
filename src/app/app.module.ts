@@ -12,8 +12,15 @@ import { InternalServerComponent } from './error-pages/internal-server/internal-
 import { DatePipe } from '@angular/common';
 import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 import { AccountModule } from './account/account.module';
+import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
 
+import { JwtModule } from "@auth0/angular-jwt";
+import { AuthGuard } from './guards/auth.guard';
 
+export function tokenGetter() {
+  return localStorage.getItem("jwt");
+}
 
 @NgModule({
   declarations: [
@@ -21,16 +28,25 @@ import { AccountModule } from './account/account.module';
     HomeComponent,
     MenuComponent,
     NotFoundComponent,
-    InternalServerComponent
+    InternalServerComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    AccountModule
+    AccountModule,
+    FormsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["localhost:5000"],
+        disallowedRoutes: []
+      }
+    })
   ],
-  providers: [DatePipe,BsModalService],
+  providers: [DatePipe,BsModalService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
