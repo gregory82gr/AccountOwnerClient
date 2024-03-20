@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
   }
   logOut = () => {
     localStorage.removeItem("jwt");
+    localStorage.removeItem("refreshToken");
   }
 
 }
